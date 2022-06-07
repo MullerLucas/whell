@@ -1,4 +1,4 @@
-# hell-components
+# whell
 
 - js front-ent lib
 - based on web-components
