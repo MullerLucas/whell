@@ -7,8 +7,8 @@ import {HelLHtml} from "./hell_html.js";
 // ============================================================================================
 
 export class HellPaths {
-    public static readonly CSS_WHELL = "/styles/whell.css";
-    public static readonly CSS_HELLOKI = "/styles/helloki.css";
+    public static readonly CSS_WHELL = "/lib/whell_common/styles/whell.css";
+    public static readonly CSS_HELLOKI = "/lib/whell_common/styles/helloki.css";
     public static readonly CSS_PROJECT = "/styles/project.css";
     public static readonly CSS_DEFAULTS = [
         { path: HellPaths.CSS_WHELL },
