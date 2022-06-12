@@ -7,7 +7,15 @@ import {HelLHtml} from "./hell_html.js";
 // ============================================================================================
 
 export class HellPaths {
-    public static readonly CSS_GLOBAL = "/styles/global.css";
+    public static readonly CSS_WHELL = "/styles/whell.css";
+    public static readonly CSS_HELLOKI = "/styles/helloki.css";
+    public static readonly CSS_PROJECT = "/styles/project.css";
+    public static readonly CSS_DEFAULTS = [
+        { path: HellPaths.CSS_WHELL },
+        { path: HellPaths.CSS_HELLOKI },
+        { path: HellPaths.CSS_PROJECT }
+    ];
+
     public static readonly CSS_FA = "/assets/fontawesome/css/all.min.css";
 }
 
@@ -106,8 +114,13 @@ export class HellImporter {
 
     // wait blocking
     // -------------
-    public static async load_resources(defs: HellImportDef[]): Promise<HellImportHandle[]> {
-        let promises = HellImporter.start_loading_resources(defs);
+    public static async load_resources(...defs: Array<HellImportDef[]>): Promise<HellImportHandle[]> {
+        let promises = [];
+
+        for (const def of defs) {
+            promises.push(...HellImporter.start_loading_resources(def));
+        }
+
         let handles = [];
 
         for (const prom of promises) {
