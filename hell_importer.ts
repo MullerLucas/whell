@@ -1,10 +1,10 @@
-import {get_file_from_hell} from "./hell_fetcher.js";
-import {HelLHtml} from "./hell_html.js";
 
 
 // ============================================================================================
 // paths
 // ============================================================================================
+
+import {HellFetcher} from "./hell_fetcher.js";
 
 export class HellPaths {
     public static readonly CSS_WHELL = "/lib/whell_common/styles/whell.css";
@@ -60,7 +60,7 @@ export class HellImporter {
     // ============================================================================================
 
     private static _create_new_promise_handle(def: HellImportDef): Promise<HellImportHandle> {
-        return get_file_from_hell(def.path).then(text => {
+        return HellFetcher.to_text(HellFetcher.get(def.path)).then(text => {
             // create, freeze and return new handle
             return Object.freeze({
                 def,
@@ -170,14 +170,14 @@ export class HellImporter {
     // ------------------
     public static html_def_from_path(js_path: string): HellImportDef {
         return {
-            path: js_path.replace(".js", ".html"),
+            path: new URL(js_path).pathname.replace(".js", ".html"),
             html_type: HellHtmlType.NoWrap
         };
     }
 
     public static css_def_from_path(js_path: string): HellImportDef {
         return {
-            path: js_path.replace(".js", ".css"),
+            path: new URL(js_path).pathname.replace(".js", ".css"),
             html_type: HellHtmlType.Style
         };
     }
