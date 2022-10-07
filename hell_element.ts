@@ -3,7 +3,7 @@ interface IHellResource {
     is_blocking: boolean
 }
 
-export class HellElement extends HTMLElement {
+export abstract class HellElement extends HTMLElement {
     protected sroot: ShadowRoot;
 
 
@@ -28,6 +28,10 @@ export class HellElement extends HTMLElement {
 
     protected on_connected(): void { }
     protected on_disconnected(): void { }
+
+    protected is_connected(): boolean {
+        return this.isConnected;
+    }
 
 
 

@@ -77,7 +77,7 @@ export class HelLHtml {
 
     public static query<E extends Element>(target: any, selector: string): E {
         // @ts-ignore
-        const res = target.querySelector<E>(selector);
+        const res = target.querySelector<E>(selector)!;
         if (!res) { throw `failed to query selector '${selector}' on element ${target}`; }
         return res;
     }

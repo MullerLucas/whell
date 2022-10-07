@@ -76,4 +76,8 @@ export class HellFetcher {
     public static async to_text(promise: Promise<Response>): Promise<string> {
         return promise.then(value => value.text());
     }
+
+    public static async get_json<T>(path: string): Promise<T> {
+        return await HellFetcher.get(path).then(r => r.json());
+    }
 }
